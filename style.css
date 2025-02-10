@@ -233,7 +233,7 @@ button:hover {
 }
 /* code.html code styles */
 .code-container {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(68, 80, 170, 0.005);
     padding: 20px;
     border: 2px solid #00ffcc;
     border-radius: 5px;
@@ -257,7 +257,7 @@ button:hover {
 }
 
 .project {
-    background: black;
+    background: rgba(68, 80, 170, 0.125);
     padding: 15px;
     border-left: 4px solid #00ffcc;
     position: relative;
@@ -277,6 +277,7 @@ button:hover {
 
 .project p {
     margin: 5px 0;
+    color: #B149BF;
 }
 
 .project-link {
