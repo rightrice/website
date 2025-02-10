@@ -1,3 +1,5 @@
+/* rightrice index stylesheet */
+/* rightriceindex.com */
 ul {
     padding: 0;
     margin: 0;
@@ -381,4 +383,100 @@ button:hover {
     0% { transform: skew(1deg, 0.5deg); }
     50% { transform: skew(-1deg, -0.5deg); }
     100% { transform: skew(0deg, 0deg); }
+}
+/* nifty tools styles */
+.asciiBin-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border: 2px solid #00ffcc;
+    border-radius: 5px;
+    color: #00ffcc;
+    font-family: monospace;
+    text-align: center;
+    width: 50%;
+    margin: 20px auto;
+}
+.asciiBin-h3 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+#toggleButtons button {
+    background: #222;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 5px;
+    transition: 0.3s;
+}
+#toggleButtons button:focus, #toggleButtons button.active {
+background-color: #B149BF !important;
+color: black !important;
+border: 2px solid #ffcc00 !important;
+} {
+    background: #222;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 5px;
+    transition: 0.3s;
+} {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 5px;
+}
+#toggleButtons .active {
+background-color: #00ffcc !important;
+color: black !important;
+border: 2px solid #00ffcc !important;
+} {
+    background: #00ffcc;
+}
+#inputField {
+    background: black;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    padding: 5px;
+    width: 80%;
+    font-family: monospace;
+    margin-top: 10px;
+}
+button.asciiBin-btn {
+    background: #222;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+button.asciiBin-btn:hover {
+    background: #00ffcc;
+    color: black;
+    border: 2px solid #ffcc00;
+} {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+#output {
+    color: #ffcc00;
+    margin-top: 15px;
 }

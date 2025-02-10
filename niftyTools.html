@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rightrice how to's</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="updateTime()">
+    <div id="particles-js"></div>
+    <ul>
+        <li class="iconsLeft"><p><img src="blinkingTerminal.gif" alt="terminal" style="width:18px;height:18px;"></p></li>
+        <li><a href="/index.html">cd /home</a></li>
+        <li><a href="/code.html">cd /code</a></li>
+        <li><a href="/how.html">cd /how to's</a></li>
+        <li><a href="/niftyTools.html">cd /nifty tools</a></li>
+        <li class="icons"><a href="https://app.hackthebox.com/profile/1208707" target="_blank" rel="noopener noreferrer"><img src="yellow-htb.png" alt="htb" style="width:18px;height:18px;"></a></li>
+        <li class="icons"><a href="https://github.com/rightrice" target="_blank" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
+    </ul>
+    <h1 id="animated-title"></h1>
+    <div class="asciiBin-container">
+        <h3 class="asciiBin-h3">binary <-> ascii converter</h3>
+        <div id="toggleButtons">
+            <button id="binaryToAsciiButton" class="active">binary to ascii</button>
+            <button id="asciiToBinaryButton">ascii to binary</button>
+        </div>
+        <input type="text" id="inputField" placeholder="type here">
+        <button id="convertButton" class="asciiBin-btn">Convert</button>
+    
+        <div class="output-container">
+            <h3 id="output">Output: </h3>
+            <button id="copyButton" class="copy-button" disabled>📋</button>
+        </div>
+    </div>
+    <br>
+    <footer>
+        <ul>
+            <li><p>rightrice</p></li>
+            <li class="footer"><p>last updated: <span id="update"></span></p></li>
+        </ul>
+    </footer>
+    <script nonce="RANDOM_NONCE_VALUE">
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentMode = 'binaryToAscii';
+    
+            function setMode(mode) {
+                currentMode = mode;
+                document.getElementById('inputField').value = ''; 
+                document.getElementById('output').textContent = 'Output: ';
+                document.getElementById('binaryToAsciiButton').classList.toggle('active', mode === 'binaryToAscii');
+                document.getElementById('asciiToBinaryButton').classList.toggle('active', mode === 'asciiToBinary');
+                document.getElementById('copyButton').disabled = true; // Disable copy button initially
+            }
+    
+            function sanitizeInput(input) {
+                return input.replace(/[^a-zA-Z0-9\s]/g, ''); // Remove non-alphanumeric characters
+            }
+    
+            function convert() {
+                let input = document.getElementById('inputField').value.trim();
+                input = sanitizeInput(input); // Prevent XSS & Code Injection
+    
+                if (currentMode === 'binaryToAscii') {
+                    binaryToAscii(input);
+                } else {
+                    asciiToBinary(input);
+                }
+            }
+    
+            function typeOutput(element, text, callback) {
+                let i = 0;
+                element.textContent = 'Output: '; // Reset output before typing
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50);
+                    } else if (callback) {
+                        callback(); // Enable copy button after typing finishes
+                    }
+                }
+                type();
+            }
+    
+            function binaryToAscii(binaryStr) {
+                binaryStr = binaryStr.replace(/\s+/g, '');
+                if (binaryStr.length % 8 !== 0) {
+                    alert('Binary input must be a multiple of 8 bits.');
+                    return;
+                }
+    
+                let asciiStr = '';
+                for (let i = 0; i < binaryStr.length; i += 8) {
+                    let byte = binaryStr.substring(i, i + 8);
+                    let charCode = parseInt(byte, 2);
+                    asciiStr += String.fromCharCode(charCode);
+                }
+    
+                typeOutput(document.getElementById('output'), asciiStr, enableCopyButton);
+            }
+    
+            function asciiToBinary(asciiStr) {
+                let binaryStr = '';
+                for (let i = 0; i < asciiStr.length; i++) {
+                    let binaryByte = asciiStr.charCodeAt(i).toString(2).padStart(8, '0');
+                    binaryStr += binaryByte + ' ';
+                }
+    
+                typeOutput(document.getElementById('output'), binaryStr.trim(), enableCopyButton);
+            }
+    
+            function enableCopyButton() {
+                document.getElementById("copyButton").disabled = false; // Enable after typing effect completes
+            }
+    
+            function copyOutput() {
+                let outputText = document.getElementById('output').textContent.replace('Output: ', '').trim();
+                if (outputText) {
+                    navigator.clipboard.writeText(outputText).then(() => {
+                        alert("Output copied to clipboard!");
+                    });
+                }
+            }
+    
+            document.getElementById('binaryToAsciiButton').addEventListener('click', () => setMode('binaryToAscii'));
+            document.getElementById('asciiToBinaryButton').addEventListener('click', () => setMode('asciiToBinary'));
+            document.getElementById('convertButton').addEventListener('click', convert);
+            document.getElementById('copyButton').addEventListener('click', copyOutput);
+        });
+    </script>
+    <script>
+        function updateTime() {
+            var x = new Date(document.lastModified).toLocaleString();
+            document.getElementById("update").textContent = x;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let h1 = document.getElementById("animated-title");
+            let binarySequence = ["101010", "110011", "011010", "100101", "111000", "000111", "010101"];
+            let finalText = "the rightrice index";
+            let index = 0;
+            let currentText = "";
+            
+            function sanitizeHTML(str) {
+                let temp = document.createElement("div");
+                temp.textContent = str;
+                return temp.innerHTML;
+            }
+            
+            function animateText() {
+                if (index < binarySequence.length) {
+                    currentText = binarySequence[index].split('').map(num => `<span class='binary-box'>${sanitizeHTML(num)}</span>`).join('');
+                    h1.innerHTML = currentText;
+                    index++;
+                    setTimeout(animateText, 200);
+                } else {
+                    setTimeout(() => {
+                        let finalIndex = 0;
+                        let tickerInterval = setInterval(() => {
+                            if (finalIndex < finalText.length) {
+                                let boxedText = finalText.substring(0, finalIndex + 1).split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                                h1.innerHTML = boxedText + "_";
+                                finalIndex++;
+                            } else {
+                                clearInterval(tickerInterval);
+                                h1.innerHTML = finalText.split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                            }
+                        }, 100);
+                    }, 1000);
+                }
+            }
+            animateText();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#233f8c" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#233f8c", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: false, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
