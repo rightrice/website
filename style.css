@@ -385,6 +385,8 @@ button:hover {
     100% { transform: skew(0deg, 0deg); }
 }
 /* nifty tools styles */
+/* */
+/* asciiBin */
 .asciiBin-container {
     background: rgba(68, 80, 170, 0.005);
     padding: 20px;
@@ -479,4 +481,35 @@ button.asciiBin-btn:hover {
 #output {
     color: #ffcc00;
     margin-top: 15px;
+}
+/* info */
+.user-info-container {
+    background: rgba(68, 80, 170, 0.005);
+    padding: 20px;
+    border: 2px solid #00ffcc;
+    border-radius: 5px;
+    color: #00ffcc;
+    font-family: monospace;
+    text-align: center;
+    width: 50%;
+    margin: 20px auto;
+}
+.user-info-container h3 {
+    color: #ffcc00;
+}
+.user-info-container p {
+    color: #00ffcc;
+}
+.hidden {
+    display: none;
+}
+.show-more-btn {
+    background: #00ffcc;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 10px;
 }
