@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rightrice how to's</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .how-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            text-align: center;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .how-title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .category {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border: 2px solid #00ffcc;
+            border-radius: 5px;
+            color: #00ffcc;
+            font-family: monospace;
+            width: calc(50% - 10px);
+            box-sizing: border-box;
+            min-height: fit-content;
+        }
+        .category-title {
+            text-align: center;
+            color: #ffcc00;
+        }
+        .tutorial-title {
+            cursor: pointer;
+            display: block;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-top: 10px;
+        }
+        .tutorial-content {
+            display: none;
+            padding-top: 10px;
+            overflow: visible;
+        }
+        .command-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .command-example {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: block;
+            max-width: calc(100% - 50px);
+            font-family: monospace;
+            background: black;
+            color: #00ffcc;
+            padding: 5px;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+        .copy-button {
+            background: #ffcc00;
+            color: black;
+            border: none;
+            width: 40px;
+            height: 30px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tutorialTitles = document.querySelectorAll(".tutorial-title");
+            function typeCommand(element, command) {
+                let i = 0;
+                element.textContent = "";
+                function type() {
+                    if (i < command.length) {
+                        element.textContent += command.charAt(i);
+                        i++;
+                        setTimeout(type, 50);
+                    }
+                }
+                type();
+            }
+            tutorialTitles.forEach(title => {
+                title.addEventListener("click", function () {
+                    let content = this.nextElementSibling;
+                    content.style.display = content.style.display === "block" ? "none" : "block";
+                    let commandElement = content.querySelector(".command-example");
+                    if (commandElement && commandElement.textContent.trim() === "") {
+                        typeCommand(commandElement, commandElement.getAttribute("data-command"));
+                    }
+                });
+            });
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("copy-button")) {
+                    let commandText = event.target.previousElementSibling.textContent;
+                    navigator.clipboard.writeText(commandText).then(() => {
+                        alert("Command copied to clipboard!");
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <ul>
+        <li class="iconsLeft"><p><img src="blinkingTerminal.gif" alt="terminal" style="width:18px;height:18px;"></p></li>
+        <li><a href="/index.html">cd /home</a></li>
+        <li><a href="/code.html">cd /code</a></li>
+        <li><a href="/how.html">cd /how to's</a></li>
+        <li class="icons"><a href="hackthebox.com" rel="noopener noreferrer"><img src="yellow-htb.png" alt="htb" style="width:18px;height:18px;"></a></li>
+        <li class="icons"><a href="https://github.com/rightrice" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
+    </ul>
+    <h1 id="animated-title"></h1>
+    
+    <div class="how-container">
+        <h2 class="how-title">>_ How-To Guides</h2>
+        <!-- Bug Bounty Commands -->
+        <div class="category">
+            <h3 class="category-title">> Bug Bounty Commands</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">> Web Exploits</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">> OSINT Recon</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bug Bounty Commands -->
+        <div class="category">
+            <h3 class="category-title">> Test</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bug Bounty Commands -->
+        <div class="category">
+            <h3 class="category-title">> Test</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bug Bounty Commands -->
+        <div class="category">
+            <h3 class="category-title">> Test</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">> Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            <li><p>rightrice</p></li>
+            <li class="footer"><p>last updated: <span id="update"></span></p></li>
+        </ul>
+    </footer>
+</body>
+</html>

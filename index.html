@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rightrice index</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="updateTime()">
+    <div id="particles-js"></div>
+    <ul>
+        <li class="iconsLeft"><p><img src="blinkingTerminal.gif" alt="terminal" style="width:18px;height:18px;"></p></li>
+        <li><a href="/index.html">cd /home</a></li>
+        <li><a href="/code.html">cd /code</a></li>
+        <li><a href="/how.html">cd /how to's</a></li>
+        <li class="icons"><a href="hackthebox.com" rel="noopener noreferrer"><img src="yellow-htb.png" alt="htb" style="width:18px;height:18px;"></a></li>
+        <li class="icons"><a href="https://github.com/rightrice" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
+    </ul>
+    <h1 id="animated-title"></h1>
+    <br>
+    <div class="update-log">
+        <h2>latest updates</h2>
+        <div class="updates">
+            <div class="update">
+                <span class="update-date">[2025-02-09]</span>
+                <p data-content="update1">🚂 revamped and started hosting new portfolio.</p>
+            </div>
+            <div class="update">
+                <span class="update-date">[2025-02-09]</span>
+                <p data-content="update1">🚀 added network node animation background and optimized header/footer positioning.</p>
+            </div>
+            <div class="update">
+                <span class="update-date">[2025-02-09]</span>
+                <p data-content="update2">🔧 implemented train station ticker-style animation for the header...choo choo!</p>
+            </div>
+            <div class="update">
+                <span class="update-date">[2025-02-09]</span>
+                <p data-content="update3">🎨 improved styling and fixed horizontal scrolling issue.</p>
+            </div>
+        </div>
+        <button id="toggleUpdates">Show More</button>
+    </div>
+    <br>
+    <footer>
+        <ul>
+            <li><p>rightrice</p></li>
+            <li class="footer"><p>last updated: <span id="update"></span></p></li>
+        </ul>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById("toggleUpdates");
+            const updates = document.querySelector(".updates");
+    
+            if (toggleButton && updates) {
+                updates.style.maxHeight = "250px"; // Show two updates by default
+    
+                toggleButton.addEventListener("click", function () {
+                    if (updates.style.maxHeight === "250px") {
+                        updates.style.maxHeight = "500px"; // Expand to show all updates
+                        this.textContent = "Show Less";
+                    } else {
+                        updates.style.maxHeight = "250px"; // Collapse back to two updates
+                        this.textContent = "Show More";
+                    }
+                });
+            }
+        });
+    </script>        
+    <script>
+        function updateTime() {
+            var x = new Date(document.lastModified).toLocaleString();
+            document.getElementById("update").textContent = x;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let h1 = document.getElementById("animated-title");
+            let binarySequence = ["101010", "110011", "011010", "100101", "111000", "000111", "010101"];
+            let finalText = "the rightrice index";
+            let index = 0;
+            let currentText = "";
+            
+            function sanitizeHTML(str) {
+                let temp = document.createElement("div");
+                temp.textContent = str;
+                return temp.innerHTML;
+            }
+            
+            function animateText() {
+                if (index < binarySequence.length) {
+                    currentText = binarySequence[index].split('').map(num => `<span class='binary-box'>${sanitizeHTML(num)}</span>`).join('');
+                    h1.innerHTML = currentText;
+                    index++;
+                    setTimeout(animateText, 200);
+                } else {
+                    setTimeout(() => {
+                        let finalIndex = 0;
+                        let tickerInterval = setInterval(() => {
+                            if (finalIndex < finalText.length) {
+                                let boxedText = finalText.substring(0, finalIndex + 1).split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                                h1.innerHTML = boxedText + "_";
+                                finalIndex++;
+                            } else {
+                                clearInterval(tickerInterval);
+                                h1.innerHTML = finalText.split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                            }
+                        }, 100);
+                    }, 1000);
+                }
+            }
+            animateText();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#233f8c" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#233f8c", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: false, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>    
+</body>
+</html>

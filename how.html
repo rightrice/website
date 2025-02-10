@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>rightrice how to's</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="updateTime()">
+    <div id="particles-js"></div>
+    <ul>
+        <li class="iconsLeft"><p><img src="blinkingTerminal.gif" alt="terminal" style="width:18px;height:18px;"></p></li>
+        <li><a href="/index.html">cd /home</a></li>
+        <li><a href="/code.html">cd /code</a></li>
+        <li><a href="/how.html">cd /how to's</a></li>
+        <li class="icons"><a href="hackthebox.com" rel="noopener noreferrer"><img src="yellow-htb.png" alt="htb" style="width:18px;height:18px;"></a></li>
+        <li class="icons"><a href="https://github.com/rightrice" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
+    </ul>
+    <h1 id="animated-title"></h1>
+
+    <div class="how-container">
+        <h2 class="how-title">>_ quick guides</h2>
+        <!-- box 0 -->
+        <div class="category">
+            <h3 class="category-title">>_ dns stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">> /etc/hosts </span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="10.10.14.12    customdomain.rri"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="/etc/hosts allows you to add domains for your pc to reach that wouldn't typically be on your dns server. rri = rightrice index :)"></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ whois</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="whois rightriceindex.com"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="a powerful command that lets you find information about a domain."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ dig</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="dig rightriceindex.com A"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="a tool that lets you find info on specific records. this would pull A records."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ dnsenum</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="dnsenum --enum rightricindex.com -f /.../DNS/subdomains-top1million-110000.txt -r"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="a tool that lets you find info on subdomains for a domain."></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 1 -->
+        <div class="category">
+            <h3 class="category-title">>_ xss stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 2 -->
+        <div class="category">
+            <h3 class="category-title">>_ wifi stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 3 -->
+        <div class="category">
+            <h3 class="category-title">>_ sql injection stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ Something 2</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <footer>
+        <ul>
+            <li><p>rightrice</p></li>
+            <li class="footer"><p>last updated: <span id="update"></span></p></li>
+        </ul>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tutorialTitles = document.querySelectorAll(".tutorial-title");
+            function typeText(element, text) {
+                let i = 0;
+                element.textContent = "";
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50);
+                    }
+                }
+                type();
+            }
+            tutorialTitles.forEach(title => {
+                title.addEventListener("click", function () {
+                    let content = this.nextElementSibling;
+                    content.style.display = content.style.display === "block" ? "none" : "block";
+                    let commandElement = content.querySelector(".command-example");
+                    let notesElement = content.querySelector(".command-notes");
+                    if (commandElement && commandElement.textContent.trim() === "") {
+                        typeText(commandElement, commandElement.getAttribute("data-command"));
+                    }
+                    if (notesElement && notesElement.textContent.trim() === "") {
+                        typeText(notesElement, notesElement.getAttribute("data-notes"));
+                    }
+                });
+            });
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("copy-button")) {
+                    let commandText = event.target.previousElementSibling.textContent;
+                    navigator.clipboard.writeText(commandText).then(() => {
+                        alert("Command copied to clipboard!");
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        function updateTime() {
+            var x = new Date(document.lastModified).toLocaleString();
+            document.getElementById("update").textContent = x;
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let h1 = document.getElementById("animated-title");
+            let binarySequence = ["101010", "110011", "011010", "100101", "111000", "000111", "010101"];
+            let finalText = "the rightrice index";
+            let index = 0;
+            let currentText = "";
+            
+            function sanitizeHTML(str) {
+                let temp = document.createElement("div");
+                temp.textContent = str;
+                return temp.innerHTML;
+            }
+            
+            function animateText() {
+                if (index < binarySequence.length) {
+                    currentText = binarySequence[index].split('').map(num => `<span class='binary-box'>${sanitizeHTML(num)}</span>`).join('');
+                    h1.innerHTML = currentText;
+                    index++;
+                    setTimeout(animateText, 200);
+                } else {
+                    setTimeout(() => {
+                        let finalIndex = 0;
+                        let tickerInterval = setInterval(() => {
+                            if (finalIndex < finalText.length) {
+                                let boxedText = finalText.substring(0, finalIndex + 1).split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                                h1.innerHTML = boxedText + "_";
+                                finalIndex++;
+                            } else {
+                                clearInterval(tickerInterval);
+                                h1.innerHTML = finalText.split('').map(char => `<span class='binary-box'>${sanitizeHTML(char)}</span>`).join('');
+                            }
+                        }, 100);
+                    }, 1000);
+                }
+            }
+            animateText();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#233f8c" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#233f8c", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: false, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
