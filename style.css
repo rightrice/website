@@ -178,7 +178,7 @@ button:hover {
 }
 /* updates template */
 .update-log {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(68, 80, 170, 0.005);
     padding: 20px;
     border: 2px solid #00ffcc;
     border-radius: 5px;
@@ -218,8 +218,8 @@ button:hover {
 
 #toggleUpdates {
     background: none;
-    color: #00ffcc;
-    border: 1px solid #00ffcc;
+    color: #B149BF;
+    border: 1px solid #B149BF;
     padding: 5px 10px;
     cursor: pointer;
     display: block;
@@ -228,7 +228,7 @@ button:hover {
 }
 
 #toggleUpdates:hover {
-    background: #00ffcc;
+    background: #B149BF;
     color: black;
 }
 /* code.html code styles */
