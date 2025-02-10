@@ -311,7 +311,7 @@ button:hover {
     margin-bottom: 20px;
 }
 .category {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(68, 80, 170, 0.005);
     padding: 20px;
     border: 2px solid #00ffcc;
     border-radius: 5px;
@@ -348,7 +348,7 @@ button:hover {
     display: block;
     max-width: calc(100% - 50px);
     font-family: monospace;
-    background: black;
+    background: rgba(68, 80, 170, 0.705);
     color: #00ffcc;
     padding: 5px;
     border-radius: 4px;
@@ -369,7 +369,7 @@ button:hover {
 
 .command-notes {
     color: #ffcc00;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(68, 80, 170, 0.705);
     padding: 10px;
     border-left: 3px solid #ffcc00;
     margin-top: 10px;
