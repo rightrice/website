@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>rightrice code</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rightrice periodic table</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="updateTime()">
@@ -17,34 +19,12 @@
         <li class="icons"><a href="https://github.com/rightrice" target="_blank" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
     </ul>
     <h1 id="animated-title"></h1>
-    <div class="code-container">
-        <h2>>_ projects and scripts</h2>
-        <div class="projects">
-            <div class="project">
-                <span class="command">>_ wifi pentesting tool</span>
-                <p>A tool to automate WiFi penetration testing. Includes deauth, handshake capture, and cracking tools.</p>
-                <a href="https://github.com/rightrice/white-sand" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-            <div class="project">
-                <span class="command">>_ pentesting tools</span>
-                <p>sniff sniff...i smell a packet</p>
-                <a href="https://github.com/rightrice/cybsec" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-            <div class="project">
-                <span class="command">>_ project-xpl0it</span>
-                <p>signature based antivirus</p>
-                <a href="https://github.com/rightrice/xpl0it" class="project-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            </div>
-        </div>
+
+    <div class="periodic-table">
+        <!-- elements are created in period_table.js and element_data.js -->
     </div>
-    
-    <br>
-    <footer>
-        <ul>
-            <li><p>rightrice</p></li>
-            <li class="footer"><p>last updated: <span id="update"></span></p></li>
-        </ul>
-    </footer>
+
+    <script src="periodic_table.js"></script> <!-- JavaScript for interactions -->   
     <script>
         function updateTime() {
             var x = new Date(document.lastModified).toLocaleString();

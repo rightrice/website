@@ -513,3 +513,62 @@ button.asciiBin-btn:hover {
     font-size: 14px;
     margin-top: 10px;
 }
+
+/* periodic table styles */
+.table-title {
+    color: #F2E63D;
+    margin: 20px;
+    text-align: center;
+}
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr); 
+    gap: 5px;
+    max-width: 90%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.element {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #00ffcc;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.element:hover {
+    background-color: #00ffcc;
+    color: black;
+    transform: scale(1.1);
+}
+
+/* element families */
+.metals { background-color: rgba(68, 80, 170, 0.7); }
+.nonmetals { background-color: rgba(241, 196, 15, 0.7); }
+.noble-gases { background-color: rgba(255, 87, 34, 0.7); }
+.lanthanides { background-color: rgba(156, 39, 176, 0.7); }
+.actinides { background-color: rgba(233, 30, 99, 0.7); }
+.halogens { background-color: rgba(255, 0, 225, 0.7); }
+.metalloids { background-color: rgba(114, 84, 31, 0.7); }
+.alkali-metals { background-color: rgba(89, 31, 114, 0.7); }
+.alkaline-earth-metals { background-color: rgba(31, 92, 114, 0.7); }
+.transition-metals { background-color: rgba(114, 31, 31, 0.7); }
+
+/* responsiveness...sorta */
+@media screen and (max-width: 768px) {
+    .element {
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+    }
+}
