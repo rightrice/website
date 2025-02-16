@@ -40,7 +40,7 @@
                             <p class="command-example" data-command="whois rightriceindex.com"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="a powerful command that lets you find information about a domain."></p>
+                        <p class="command-notes" data-notes="NOTE:  a powerful command that lets you find information about a domain."></p>
                     </div>
                 </div>
                 <div class="tutorial">
@@ -50,7 +50,7 @@
                             <p class="command-example" data-command="dig rightriceindex.com A"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="a tool that lets you find info on specific records. this would pull A records."></p>
+                        <p class="command-notes" data-notes="NOTE:  a tool that lets you find info on specific records. this would pull A records."></p>
                     </div>
                 </div>
                 <div class="tutorial">
@@ -60,33 +60,43 @@
                             <p class="command-example" data-command="dnsenum --enum rightricindex.com -f /.../DNS/subdomains-top1million-110000.txt -r"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="a tool that lets you find info on subdomains for a domain."></p>
+                        <p class="command-notes" data-notes="NOTE:  a tool that lets you find info on subdomains for a domain."></p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- box 1 -->
         <div class="category">
-            <h3 class="category-title">>_ xss stuff</h3>
+            <h3 class="category-title">>_ OSINT</h3>
             <div class="tutorials">
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something</span>
+                    <span class="tutorial-title">>_ dnsrecon 0</span>
                     <div class="tutorial-content">
                         <div class="command-container">
-                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <p class="command-example" data-command="dnsrecon -d example.com -D subdomains.txt -t brt"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  performs a subdomain bruteforce attack on the given url"></p>
                     </div>
                 </div>
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something 2</span>
+                    <span class="tutorial-title">>_ dnsrecon 1</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="dnsrecon -d example.com -t axfr"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="NOTE:  performs a zone transfer attack on given url"></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ theHarvester</span>
                     <div class="tutorial-content">
                         <div class="command-container">
                             <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  this command will gather any OSINT about the url provided"></p>
                     </div>
                 </div>
             </div>
@@ -96,23 +106,23 @@
             <h3 class="category-title">>_ wifi stuff</h3>
             <div class="tutorials">
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something</span>
+                    <span class="tutorial-title">>_ airmon-ng</span>
                     <div class="tutorial-content">
                         <div class="command-container">
-                            <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
+                            <p class="command-example" data-command="airmon-ng start wlan0 11"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  this will set your wlan0 chip to monitor mode, allowing the discovery of networks. the 11 is telling airmon-ng what channel to focus on"></p>
                     </div>
                 </div>
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something 2</span>
+                    <span class="tutorial-title">>_ aircrack-ng</span>
                     <div class="tutorial-content">
                         <div class="command-container">
-                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <p class="command-example" data-command="aircrack-ng networkSSID.pcap -w /.../wordlist.txt"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  this will crack the pcap file using the wordlist picked"></p>
                     </div>
                 </div>
             </div>
@@ -122,23 +132,49 @@
             <h3 class="category-title">>_ sql injection stuff</h3>
             <div class="tutorials">
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something</span>
+                    <span class="tutorial-title">>_ sqlmap</span>
                     <div class="tutorial-content">
                         <div class="command-container">
                             <p class="command-example" data-command="sqlmap -u http://target.com?id=1 --dbs"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  gathers infomation databases at the url provided"></p>
                     </div>
                 </div>
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ Something 2</span>
+                    <span class="tutorial-title">>_ sqlmap password dumps</span>
                     <div class="tutorial-content">
                         <div class="command-container">
-                            <p class="command-example" data-command="theHarvester -d example.com -b all"></p>
+                            <p class="command-example" data-command="sqlmap -u http://target.com/index.php?id=1 -D users_db -T users --dump"></p>
                             <button class="copy-button">📋</button>
                         </div>
-                        <p class="command-notes" data-notes="Gather emails, subdomains, and more from public sources."></p>
+                        <p class="command-notes" data-notes="NOTE:  will perform a dump of information within the user_db database with the users key. NOTE: you will need double quotes around url"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- box 4 -->
+        <div class="category">
+            <h3 class="category-title">>_ bug bounty stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ BBOT</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="bbot -t example.com --all --output results.json"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="NOTE:  performs deep scan with all modules and saves results"></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ nuclei</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="nuclei -u https://example.com -t cves/"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="NOTE:  used for finding cves for the url given"></p>
                     </div>
                 </div>
             </div>
