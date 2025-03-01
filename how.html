@@ -66,12 +66,13 @@
                 </div>
             </div>
         </div>
+        <!-- end box 0 -->
         <!-- box 1 -->
         <div class="category">
             <h3 class="category-title">>_ OSINT</h3>
             <div class="tutorials">
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ dnsrecon 0</span>
+                    <span class="tutorial-title">>_ 0.dnsrecon</span>
                     <div class="tutorial-content">
                         <div class="command-container">
                             <p class="command-example" data-command="dnsrecon -d example.com -D subdomains.txt -t brt"></p>
@@ -81,7 +82,7 @@
                     </div>
                 </div>
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ dnsrecon 1</span>
+                    <span class="tutorial-title">>_ 1.dnsrecon</span>
                     <div class="tutorial-content">
                         <div class="command-container">
                             <p class="command-example" data-command="dnsrecon -d example.com -t axfr"></p>
@@ -102,6 +103,7 @@
                 </div>
             </div>
         </div>
+        <!-- end box 1 -->
         <!-- box 2 -->
         <div class="category">
             <h3 class="category-title">>_ wifi stuff</h3>
@@ -128,6 +130,7 @@
                 </div>
             </div>
         </div>
+        <!-- end box 2 -->
         <!-- box 3 -->
         <div class="category">
             <h3 class="category-title">>_ sql injection stuff</h3>
@@ -154,6 +157,7 @@
                 </div>
             </div>
         </div>
+        <!-- end box 3 -->
         <!-- box 4 -->
         <div class="category">
             <h3 class="category-title">>_ bug bounty stuff</h3>
@@ -169,7 +173,7 @@
                     </div>
                 </div>
                 <div class="tutorial">
-                    <span class="tutorial-title">>_ nuclei</span>
+                    <span class="tutorial-title">>_ 0.nuclei</span>
                     <div class="tutorial-content">
                         <div class="command-container">
                             <p class="command-example" data-command="nuclei -u https://example.com -t cves/"></p>
@@ -180,6 +184,34 @@
                 </div>
             </div>
         </div>
+        <!-- end box 4 -->
+        <!-- box 5 -->
+        <div class="category">
+            <h3 class="category-title">>_ xss stuff</h3>
+            <div class="tutorials">
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ XSStrike</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="python3 xsstrike.py -u http://example.com/?q=test --headers User-Agent: whateverYouWant"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="NOTE:  will bypass security headers. you will need double quotes around url and user-agent."></p>
+                    </div>
+                </div>
+                <div class="tutorial">
+                    <span class="tutorial-title">>_ 1.nuclei</span>
+                    <div class="tutorial-content">
+                        <div class="command-container">
+                            <p class="command-example" data-command="nuclei -t xsstrike.yaml -u http://target.com"></p>
+                            <button class="copy-button">📋</button>
+                        </div>
+                        <p class="command-notes" data-notes="NOTE:  --data allows payload modification -verbose for verbosity ... yaml file found on my github :)"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end box 5 -->
     </div>
     </div>
     <br>
