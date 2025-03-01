@@ -687,3 +687,24 @@ button.asciiBin-btn:hover {
     background-color: #00ffcc;
     color: black;
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #011C26;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #41BF9B, #B149BF);
+    border-radius: 5px;
+    border: 2px solid #011C26;
+    box-shadow: 0 0 5px #41BF9B;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #B149BF, #41BF9B);
+}
