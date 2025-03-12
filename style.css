@@ -107,10 +107,9 @@ code {
 footer {
     margin-top: auto;
     width: 100%;
-    background: #020c1b;
     color: #F2E63D;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 #converter {
