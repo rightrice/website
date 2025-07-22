@@ -77,9 +77,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/monokai-sublime.css" />
   <script>
     async function loadNotesIndex() {
-      const res = await fetch('/notes/notes.json');
-      return await res.json();
+      try {
+        const res = await fetch('/notes/notes.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } catch (err) {
+        console.error("❌ Failed to load notes.json:", err);
+        document.getElementById('viewer').innerHTML = '<p style="color:red;">Could not load notes index.</p>';
+        return {};
+      }
     }
+
     function renderSidebar(notes) {
       const sidebar = document.getElementById('sidebar');
       sidebar.innerHTML = '';
@@ -98,18 +106,22 @@
         });
       }
     }
+
     async function loadMarkdown(file) {
       try {
         const res = await fetch(file);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const md = await res.text();
         const html = marked.parse(md);
         const viewer = document.getElementById('viewer');
         viewer.innerHTML = html;
         document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
       } catch (err) {
-        document.getElementById('viewer').innerHTML = '<p style="color: red;">Failed to load note.</p>';
+        console.error("❌ Failed to load markdown file:", file, err);
+        document.getElementById('viewer').innerHTML = '<p style="color:red;">Failed to load note.</p>';
       }
     }
+
     (async () => {
       const params = new URLSearchParams(window.location.search);
       const initialFile = params.get('file');
