@@ -19,76 +19,72 @@
         <li class="icons"><a href="https://github.com/rightrice" target="_blank" rel="noopener noreferrer"><img src="github.png" alt="github" style="width:18px;height:18px;"></a></li>
     </ul>
     <h1 id="animated-title"></h1>
+    <h1>UNDER DEVELOPMENT</h1>
     <br>
-    <div class="update-log">
-        <h2>latest updates</h2>
-        <div class="updates">
-            <div class="update">
-                <span class="update-date">[2025-03-01]</span>
-                <p data-content="update0">🦥 added more tips, created a nuclei template directory on github.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-24]</span>
-                <p data-content="update0">🌐 created python script for UniFi API.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-16]</span>
-                <p data-content="update0">🦖 created PoC's for a couple new CVE's.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-16]</span>
-                <p data-content="update0">🔬 finalized the periodic table.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-15]</span>
-                <p data-content="update1">🧬 added some more commands to how to's.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-09]</span>
-                <p data-content="update2">🚂 revamped and started hosting new portfolio.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-09]</span>
-                <p data-content="update3">🚀 added network node animation background and optimized header/footer positioning.</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-09]</span>
-                <p data-content="update4">🔧 implemented train station ticker-style animation for the header...choo choo!</p>
-            </div>
-            <div class="update">
-                <span class="update-date">[2025-02-09]</span>
-                <p data-content="update5">🎨 improved styling and fixed horizontal scrolling issue.</p>
-            </div>
-        </div>
-        <button id="toggleUpdates">Show More</button>
-    </div>
+    <div class="sidebar" id="sidebar"></div>
+  <div class="viewer" id="viewer">Loading...</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/common.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/monokai-sublime.css" />
+  <script>
+    async function loadNotesIndex() {
+      const res = await fetch('notes.json');
+      return await res.json();
+    }
+    function renderSidebar(notes) {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.innerHTML = '';
+      for (const [category, items] of Object.entries(notes)) {
+        const catEl = document.createElement('h2');
+        catEl.className = 'category';
+        catEl.textContent = category;
+        sidebar.appendChild(catEl);
+
+        items.forEach(note => {
+          const link = document.createElement('span');
+          link.className = 'note-link';
+          link.textContent = note.title;
+          link.onclick = () => loadMarkdown(note.file);
+          sidebar.appendChild(link);
+        });
+      }
+    }
+    async function loadMarkdown(file) {
+      try {
+        const res = await fetch(file);
+        const md = await res.text();
+        const html = marked.parse(md);
+        const viewer = document.getElementById('viewer');
+        viewer.innerHTML = html;
+        document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+      } catch (err) {
+        document.getElementById('viewer').innerHTML = '<p style="color: red;">Failed to load note.</p>';
+      }
+    }
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const initialFile = params.get('file');
+      const notes = await loadNotesIndex();
+      renderSidebar(notes);
+
+      if (initialFile) {
+        loadMarkdown(initialFile);
+      } else {
+        const firstCategory = Object.keys(notes)[0];
+        if (notes[firstCategory]?.[0]?.file) {
+          loadMarkdown(notes[firstCategory][0].file);
+        }
+      }
+    })();
+  </script>
     <br>
     <footer>
         <ul>
             <li><p>rightrice</p></li>
             <li class="footer"><p>last updated: <span id="update"></span></p></li>
         </ul>
-    </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const toggleButton = document.getElementById("toggleUpdates");
-            const updates = document.querySelector(".updates");
-    
-            if (toggleButton && updates) {
-                updates.style.maxHeight = "250px"; // Show two updates by default
-    
-                toggleButton.addEventListener("click", function () {
-                    if (updates.style.maxHeight === "250px") {
-                        updates.style.maxHeight = "50000px"; // Expand to show all updates
-                        this.textContent = "Show Less";
-                    } else {
-                        updates.style.maxHeight = "250px"; // Collapse back to two updates
-                        this.textContent = "Show More";
-                    }
-                });
-            }
-        });
-    </script>        
+    </footer>       
     <script>
         function updateTime() {
             var x = new Date(document.lastModified).toLocaleString();

@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Scripts.js loaded successfully!");
 
-    // ✅ ASCII-Binary Converter
+    // ASCII-Binary Converter
     let convertButton = document.getElementById("convertButton");
     if (convertButton) {
         convertButton.addEventListener("click", convertText);
@@ -13,13 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
         copyButton.addEventListener("click", copyOutput);
     }
 
-    // ✅ Show More User Info
+    // Show More User Info
     let showMoreBtn = document.getElementById("showMoreBtn");
     if (showMoreBtn) {
         showMoreBtn.addEventListener("click", toggleUserInfo);
     }
 
-    // ✅ Weather Data Fetching
+    // Weather Data Fetching
     let unitToggle = document.getElementById("unit-toggle");
     if (unitToggle) {
         unitToggle.addEventListener("click", toggleUnit);

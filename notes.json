@@ -1,0 +1,52 @@
+{
+  "FUZZing": [
+    {
+      "title": "FFUF Basics",
+      "file": "notes/fuzzing/ffuf-basics.md"
+    },
+    {
+      "title": "Advanced Fuzzing Techniques",
+      "file": "notes/fuzzing/advanced-fuzzing.md"
+    }
+  ],
+  "JavaScript": [
+    {
+      "title": "JS Recon & Analysis",
+      "file": "notes/javascript/js-recon.md"
+    },
+    {
+      "title": "Client-Side Vulns",
+      "file": "notes/javascript/client-side-vulns.md"
+    }
+  ],
+  "OSINT": [
+    {
+      "title": "theHarvester Deep Dive",
+      "file": "notes/osint/theharvester.md"
+    },
+    {
+      "title": "Recon-ng Usage",
+      "file": "notes/osint/recon-ng.md"
+    }
+  ],
+  "SQL": [
+    {
+      "title": "Union-Based SQLi",
+      "file": "notes/sql/union-based.md"
+    },
+    {
+      "title": "Blind SQLi Tricks",
+      "file": "notes/sql/blind-sqli.md"
+    }
+  ],
+  "XSS": [
+    {
+      "title": "Reflected XSS",
+      "file": "notes/xss/reflected-xss.md"
+    },
+    {
+      "title": "Stored XSS Scenarios",
+      "file": "notes/xss/stored-xss.md"
+    }
+  ]
+}
