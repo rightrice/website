@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule 1 Mix Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #00ff9f;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
+    }
+    .terminal-box {
+      border: 2px solid #00ff9f;
+      border-radius: 8px;
+      padding: 1rem;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 15px #00ff9f44;
+    }
+    h1, h2 {
+      text-align: center;
+      text-shadow: 0 0 5px #00ff9f;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    select, input {
+      width: 100%;
+      padding: 0.5rem;
+      background: #1a1a1a;
+      border: 1px solid #00ff9f;
+      color: #00ff9f;
+    }
+    .ingredient-field {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      align-items: center;
+    }
+    .ingredient-field select {
+      flex: 1;
+    }
+    .ingredient-field button {
+      background: #ff0044;
+      color: white;
+      border: none;
+      padding: 0;
+      font-size: 1rem;
+      width: 2rem;
+      height: 2rem;
+      line-height: 2rem;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .ingredient-counter {
+      font-size: 0.9rem;
+      color: #ccc;
+      text-align: right;
+      margin-bottom: 0.5rem;
+      margin-top: -0.5rem;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: max-content;
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    button {
+      background: #00ff9f;
+      color: #0f0f0f;
+      border: none;
+      padding: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .output {
+      background: #1a1a1a;
+      border: 1px solid #00ff9f;
+      padding: 1rem;
+      margin-top: 1rem;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .output.visible {
+      opacity: 1;
+    }
+</style>
+<body>
+    <div class="terminal-box">
+      <h1>Schedule 1 Mix Calculator</h1>
+      <div class="input-group">
+        <label for="baseProduct">Base Product</label>
+        <select id="baseProduct"></select>
+      </div>
+      <div class="input-group">
+        <label>Ingredients</label>
+        <div class="ingredient-counter" id="ingredientCount">0/8 ingredients used</div>
+        <div id="ingredientList"></div>
+        <button id="addIngredientBtn" type="button" onclick="addIngredientField()">Add Ingredient</button>
+      </div>
+      <button onclick="calculateMix()">Calculate Mix</button>
+      <p style="text-align:center; margin-top:1rem;"></p>
+  
+      <h2>Reverse Calculator</h2>
+      <div class="input-group">
+        <label for="desiredEffects">Desired Effects (comma-separated)</label>
+        <input type="text" id="desiredEffects" placeholder="e.g. Sneaky, Toxic">
+      </div>
+      <button onclick="reverseCalculate()">Find Cheapest Combination</button>
+      <div class="output" id="reverseOutput"></div>
+    </div>
+  
+    <script>
+      function updateIngredientCounter() {
+        const max = 8;
+        const used = document.querySelectorAll('#ingredientList .ingredient-field').length;
+        document.getElementById('ingredientCount').textContent = `${used}/${max} ingredients used`;
+        document.getElementById('addIngredientBtn').disabled = used >= max;
+      }
+  
+      function createTooltipOption(name, data) {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        option.title = `${data.effects.join(', ')} ($${data.cost})`;
+        return option;
+      }
+  
+      function addIngredientField(value = null) {
+        const container = document.getElementById('ingredientList');
+        const wrapper = document.createElement('div');
+        wrapper.className = 'ingredient-field';
+  
+        const select = document.createElement('select');
+        for (const [name, data] of Object.entries(window.ingredientData)) {
+          const opt = createTooltipOption(name, data);
+          if (name === value) opt.selected = true;
+          select.appendChild(opt);
+        }
+  
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '×';
+        removeBtn.onclick = () => {
+          wrapper.remove();
+          updateIngredientCounter();
+          calculateMix();
+        };
+  
+        select.onchange = calculateMix;
+  
+        wrapper.appendChild(select);
+        wrapper.appendChild(removeBtn);
+        container.appendChild(wrapper);
+        updateIngredientCounter();
+        calculateMix();
+      }
+  
+      function populateDropdowns() {
+        const baseSelect = document.getElementById('baseProduct');
+        const basePrices = window.basePrices;
+        Object.keys(basePrices).forEach(name => {
+          const opt = document.createElement('option');
+          opt.value = name;
+          opt.textContent = name;
+          baseSelect.appendChild(opt);
+        });
+        baseSelect.onchange = calculateMix;
+      }
+  
+      function calculateMix() {
+        const base = document.getElementById('baseProduct').value;
+        const selects = document.querySelectorAll('#ingredientList select');
+        const ingredients = [...selects].map(sel => sel.value);
+  
+        let effects = [];
+        let cost = 0;
+  
+        ingredients.forEach(ing => {
+          if (window.ingredientData[ing]) {
+            effects.push(...window.ingredientData[ing].effects);
+            cost += window.ingredientData[ing].cost;
+          }
+        });
+  
+        const uniqueEffects = [...new Set(effects)];
+        const effectMultiplier = uniqueEffects.reduce((sum, eff) => sum + (window.effectValues?.[eff] || 0), 0);
+        const sellPrice = Math.round((window.basePrices?.[base] || 0) * (1 + effectMultiplier));
+  
+        const output = `
+          <strong>Base Product:</strong> ${base}<br>
+          <strong>Ingredients:</strong> ${ingredients.join(', ')}<br>
+          <strong>Effects:</strong> ${uniqueEffects.join(', ')}<br>
+          <strong>Total Cost:</strong> $${cost}<br>
+          <strong>Sell Price:</strong> $${sellPrice}<br>
+          <strong>Profit:</strong> $${sellPrice - cost}
+        `;
+  
+        const el = document.getElementById('output');
+        el.innerHTML = output;
+        el.classList.add('visible');
+      }
+  
+      window.ingredientData = {
+        "Battery": { effects: ["Bright-Eyed"], cost: 5 },
+        "Banana": { effects: ["Gingeritis"], cost: 3 },
+        "Cuke": { effects: ["Energizing"], cost: 4 },
+        "Donut": { effects: ["Calorie-Dense"], cost: 6 },
+        "Energy Drink": { effects: ["Athletic"], cost: 5 },
+        "Flu Medicine": { effects: ["Sedating"], cost: 6 },
+        "Gasoline": { effects: ["Toxic"], cost: 5 },
+        "Mega Bean": { effects: ["Foggy"], cost: 4 },
+        "Paracetamol": { effects: ["Sneaky"], cost: 3 },
+        "Motor Oil": { effects: ["Slippery"], cost: 4 },
+        "Mouth Wash": { effects: ["Balding"], cost: 4 },
+        "Horse Semen": { effects: ["Long-Faced"], cost: 7 },
+        "Iodine": { effects: ["Jennerising"], cost: 5 },
+        "Chili": { effects: ["Spicy"], cost: 3 },
+        "Viagra": { effects: ["Tropic Thunder"], cost: 6 },
+        "Addy": { effects: ["Thought-Provoking"], cost: 5 },
+      };
+  
+      window.basePrices = {
+        "OG Kush": 35,
+        "Sour Diesel": 35,
+        "Green Crack": 35,
+        "Granddaddy Purple": 35,
+        "Methamphetamine": 50,
+        "Cocaine": 50
+      };
+  
+      window.effectValues = {
+        "Bright-Eyed": 0.2,
+        "Gingeritis": 0.1,
+        "Energizing": 0.3,
+        "Calorie-Dense": 0.15,
+        "Athletic": 0.25,
+        "Sedating": 0.1,
+        "Toxic": 0.4,
+        "Foggy": 0.35,
+        "Sneaky": 0.45,
+        "Slippery": 0.2,
+        "Balding": 0.1,
+        "Long-Faced": 0.25,
+        "Jennerising": 0.3,
+        "Spicy": 0.2,
+        "Tropic Thunder": 0.5,
+        "Thought-Provoking": 0.35,
+        "Euphoric": 0.4,
+        "Hyperactive": 0.5,
+        "Analgesic": 0.2,
+        "Hallucinogenic": 0.6,
+        "Alertness": 0.25,
+        "Sleepy": 0.1,
+        "Nausea Relief": 0.15
+      };
+  
+      window.onload = () => {
+        populateDropdowns();
+        addIngredientField();
+      };
+    </script>
+  </body>
+</html>
