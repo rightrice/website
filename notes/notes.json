@@ -4,10 +4,6 @@
       "title": "FFUF Basics",
       "file": "notes/fuzzing/ffuf-basics.md"
     },
-    {
-      "title": "Advanced Fuzzing Techniques",
-      "file": "notes/fuzzing/advanced-fuzzing.md"
-    }
   ],
   "JavaScript": [
     {
