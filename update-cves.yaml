@@ -1,0 +1,40 @@
+name: Update CVE Data
+
+on:
+  schedule:
+    # Runs daily at 00:00 UTC (midnight)
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  update-cves:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install node-fetch@2
+
+      - name: Generate CVE data
+        run: node update-cves.js
+
+      - name: Commit CVE JSON
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'rightrice'
+          author_email: 'rightrice@proton.me'
+          message: 'chore: update CVE data'
+          add: 'cve_data.json'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: 
+          branch: main
